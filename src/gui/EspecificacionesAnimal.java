@@ -1,4 +1,4 @@
-    /*
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -87,6 +87,7 @@ public class EspecificacionesAnimal extends javax.swing.JDialog {//JDialog { //
         graficar();
 
         fecha_peso = Calendar.getInstance();
+        fecha_actual = Calendar.getInstance();
 
         JDc_FechaCompra.setDate(Calendar.getInstance().getTime());
         JDc_FechaIngreso.setDate(Calendar.getInstance().getTime());
@@ -94,9 +95,6 @@ public class EspecificacionesAnimal extends javax.swing.JDialog {//JDialog { //
         Image i = null;
         i = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/resources/logo tru-test.png"));
         setIconImage(i);
-//        this.pack();
-//        this.setClosable(true);
-//        this.setFrameIcon(new ImageIcon(this.getClass().getResource("/resources/logo tru-test.png")));
 
         this.semental.cargarTagsIdsSementales();
         this.proveedorSelector1.cargar();
@@ -947,7 +945,6 @@ public class EspecificacionesAnimal extends javax.swing.JDialog {//JDialog { //
 //                fecha_actual.getTime().getHours(),
 //                fecha_actual.getTime().getMinutes(),
 //                fecha_actual.getTime().getSeconds());
-
         tag_id = tf_AreteVisual.getText();
         tf_PesoActual.setDouble(this.tf_pesoBascula.getDouble());
 
@@ -1008,15 +1005,12 @@ public class EspecificacionesAnimal extends javax.swing.JDialog {//JDialog { //
         if (this.jrb_esSemental.isSelected()) {
 
             animalDetalle.es_semental = "S";
-        } else {
+        } else if (this.semental.getItemCount() > 0) {
+            if (!this.semental.getSelectedItem().toString().equals("")) {
 
-            if (this.semental.getItemCount() > 0) {
-                if (!this.semental.getSelectedItem().toString().equals("")) {
+                semental.cargarPorAreteVisual(this.semental.getSelectedItem().toString(), "A");
 
-                    semental.cargarPorAreteVisual(this.semental.getSelectedItem().toString(), "A");
-
-                    animalDetalle.semental = semental;
-                }
+                animalDetalle.semental = semental;
             }
         }
 
@@ -1131,11 +1125,11 @@ public class EspecificacionesAnimal extends javax.swing.JDialog {//JDialog { //
             tf_AreteVisual.setText("");
             corralSelector.setSelectedItem(animalDetalle.corral.nombre);
 
-            JDc_FechaIngreso.setDate(animalDetalle.fecha_ingreso);
+            JDc_FechaIngreso.setDate(fecha_actual.getTime());
             tf_AreteSiniiga.setText("");
             tf_AreteCampaña.setText("");
 
-            JDc_FechaCompra.setDate(animalDetalle.fecha_compra);
+            JDc_FechaCompra.setDate(fecha_actual.getTime());
             tf_Compra.setText(animalDetalle.compra);
             proveedorSelector1.setSelectedItem(animalDetalle.proveedor.descripcion);
             tf_PesoActual.setText("0.0");
@@ -1247,7 +1241,10 @@ public class EspecificacionesAnimal extends javax.swing.JDialog {//JDialog { //
         areteVisual = this.tf_AreteVisual.getText();
 
         if (areteVisual.length() == 0) {
-
+            JDc_FechaCompra.setDate(Calendar.getInstance().getTime());
+            JDc_FechaIngreso.setDate(Calendar.getInstance().getTime());
+            System.out.println("\\033[31m"+JDc_FechaCompra.getDate().getTime());
+            System.out.println("\\033[31m"+JDc_FechaIngreso.getDate().getTime());
             return;
         }
 
@@ -1257,11 +1254,11 @@ public class EspecificacionesAnimal extends javax.swing.JDialog {//JDialog { //
             tf_AreteVisual.setText("");
             corralSelector.setSelectedItem(animalDetalle.corral.nombre);
 
-            JDc_FechaIngreso.setDate(animalDetalle.fecha_ingreso);
+            JDc_FechaIngreso.setDate(fecha_actual.getTime());
             tf_AreteSiniiga.setText("");
             tf_AreteCampaña.setText("");
 
-            JDc_FechaCompra.setDate(animalDetalle.fecha_compra);
+            JDc_FechaCompra.setDate(fecha_actual.getTime());
             tf_NumeroLote.setText(animalDetalle.numero_lote);
             tf_Compra.setText(animalDetalle.compra);
             proveedorSelector1.setSelectedItem(animalDetalle.proveedor.descripcion);
@@ -1416,11 +1413,13 @@ public class EspecificacionesAnimal extends javax.swing.JDialog {//JDialog { //
         fondo1.cargar(pantallaTamano);
 //        jPanel1.setLocation((pantallaTamano.width / 2) - (jPanel1.getWidth() / 2), (pantallaTamano.height / 2) - (jPanel1.getHeight() / 2));
 //        setExtendedState(JFrame.MAXIMIZED_BOTH);
-        setResizable(false); /*Boton de minimizar*/
+        setResizable(false);
+        /*Boton de minimizar*/
 
     }
 
     Calendar fecha_peso;
+    Calendar fecha_actual;
     public static Animal animalDetalle;
     public boolean nuevo;
     private PesoManual pesoManual;
