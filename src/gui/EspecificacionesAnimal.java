@@ -743,8 +743,7 @@ public class EspecificacionesAnimal extends javax.swing.JDialog {//JDialog { //
     private void btn_capturarPesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_capturarPesoActionPerformed
 
         tf_PesoActual.setDouble(tf_pesoBascula.getDouble());
-
-        agregar_peso();
+            agregar_peso();
     }//GEN-LAST:event_btn_capturarPesoActionPerformed
 
     private void tf_EidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_EidActionPerformed
@@ -887,7 +886,6 @@ public class EspecificacionesAnimal extends javax.swing.JDialog {//JDialog { //
                     btn_pesoManual.setEnabled(true);
                     btn_quitarPeso.setEnabled(true);
                     btn_reporte.setEnabled(true);
-                    return;
                 }
 
                 Animal animal2 = new Animal();
@@ -1125,11 +1123,11 @@ public class EspecificacionesAnimal extends javax.swing.JDialog {//JDialog { //
             tf_AreteVisual.setText("");
             corralSelector.setSelectedItem(animalDetalle.corral.nombre);
 
-            JDc_FechaIngreso.setDate(fecha_actual.getTime());
+            JDc_FechaIngreso.setDate(Calendar.getInstance().getTime());
             tf_AreteSiniiga.setText("");
             tf_AreteCampaña.setText("");
 
-            JDc_FechaCompra.setDate(fecha_actual.getTime());
+            JDc_FechaCompra.setDate(Calendar.getInstance().getTime());
             tf_Compra.setText(animalDetalle.compra);
             proveedorSelector1.setSelectedItem(animalDetalle.proveedor.descripcion);
             tf_PesoActual.setText("0.0");
@@ -1243,8 +1241,8 @@ public class EspecificacionesAnimal extends javax.swing.JDialog {//JDialog { //
         if (areteVisual.length() == 0) {
             JDc_FechaCompra.setDate(Calendar.getInstance().getTime());
             JDc_FechaIngreso.setDate(Calendar.getInstance().getTime());
-            System.out.println("\\033[31m"+JDc_FechaCompra.getDate().getTime());
-            System.out.println("\\033[31m"+JDc_FechaIngreso.getDate().getTime());
+            System.out.println("\\033[31m" + JDc_FechaCompra.getDate().getTime());
+            System.out.println("\\033[31m" + JDc_FechaIngreso.getDate().getTime());
             return;
         }
 
