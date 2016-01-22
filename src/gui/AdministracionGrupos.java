@@ -986,6 +986,8 @@ public class AdministracionGrupos extends javax.swing.JFrame { // {
             cargarCorrales();
             corralActivo = true;
             corralSelector.setSelectedItem(corral.nombre);
+            this.jtf_localizacion.setText(null);
+            this.jta_Observaciones.setText(null);
         } else {
 
         }

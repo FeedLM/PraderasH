@@ -173,7 +173,8 @@ public class SeleccionarRancho extends javax.swing.JFrame {
     private void seleccionaRancho() {
 
         desktop = new Desktop();
-
+        
+        int index= this.ranchoSelector1.getSelectedIndex();
         rancho.cargarPorDescripcion(this.ranchoSelector1.getSelectedItem().toString());
 
         if (rancho.id_rancho.equals("")) {

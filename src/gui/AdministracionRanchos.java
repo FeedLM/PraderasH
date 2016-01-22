@@ -223,7 +223,6 @@ public class AdministracionRanchos extends javax.swing.JFrame {
         etq_Estado.setText("Estado:");
         jPanel4.add(etq_Estado, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 80, 22));
 
-        tf_Nombre.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tf_Nombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tf_NombreActionPerformed(evt);
@@ -355,7 +354,14 @@ public class AdministracionRanchos extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_nuevoActionPerformed
 
     private void btn_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_guardarActionPerformed
+        nombre = tf_Nombre.getText();
+        Rancho rancho2=new Rancho();
+        rancho2.cargarPorDescripcion(nombre);
+        if (!rancho2.id_rancho.equals("")) {
+            JOptionPane.showMessageDialog(this, "Ya Existe un Rancho con ese nombre", gs_mensaje, JOptionPane.INFORMATION_MESSAGE);
+        }else{
         guardar();
+        }
     }//GEN-LAST:event_btn_guardarActionPerformed
 
     private void btn_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_eliminarActionPerformed

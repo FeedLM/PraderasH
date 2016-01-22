@@ -676,6 +676,11 @@ public class EspecificacionesAnimal extends javax.swing.JDialog {//JDialog { //
         tf_ganancia.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         tf_ganancia.setEnabled(false);
         tf_ganancia.setFont(new java.awt.Font("Trebuchet", 0, 60)); // NOI18N
+        tf_ganancia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_gananciaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -860,6 +865,10 @@ public class EspecificacionesAnimal extends javax.swing.JDialog {//JDialog { //
         historialPartos.setVisible(true);
     }//GEN-LAST:event_btn_PartosActionPerformed
 
+    private void tf_gananciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_gananciaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tf_gananciaActionPerformed
+
     private boolean validacionCodigo;
 
     private void validarCodigo() {
@@ -877,6 +886,7 @@ public class EspecificacionesAnimal extends javax.swing.JDialog {//JDialog { //
                     btn_BajasMuerte.setEnabled(true);
                     btn_Hospital.setEnabled(true);
                     if (nuevo) {
+                        //JOptionPane.showMessageDialog(this, "El código IDV que intenta guardar ya existe", gs_mensaje, JOptionPane.ERROR_MESSAGE);
                         btn_agregar.setEnabled(true);
                     } else {
                         btn_actualizar.setEnabled(true);
@@ -1551,7 +1561,7 @@ public class EspecificacionesAnimal extends javax.swing.JDialog {//JDialog { //
          tf_ganancia.setText(manejadorBD.getValorString(0, 0));
          }
          */
-        manejadorBD.consulta(""
+        /*manejadorBD.consulta(""
                 + "SELECT   ROUND(COALESCE((MAX(peso) - MIN(peso)) / DATEDIFF(MAX(fecha), MIN(fecha)),0.00),2)  \n"
                 + "FROM     movimiento m, detalle_movimiento d, rancho r \n"
                 + "WHERE    m.id_rancho	=   r.id_rancho\n"
@@ -1559,7 +1569,18 @@ public class EspecificacionesAnimal extends javax.swing.JDialog {//JDialog { //
                 + "AND      (   m.id_rancho     =   d.id_rancho\n"
                 + "         AND m.id_concepto   =   d.id_concepto\n"
                 + "         AND m.id_movimiento =   d.id_movimiento\n "
-                + "         AND d.id_animal     =   '" + id_animal + "')");
+                + "         AND d.id_animal     =   '" + id_animal + "')");*/
+        
+        manejadorBD.consulta(""
+                + "SELECT   ROUND(COALESCE((peso_actual-peso_compra)/ DATEDIFF(MAX(fecha), MIN(fecha)),0.00),1)  \n"
+                + "FROM     movimiento m, detalle_movimiento d, rancho r, animal a \n"
+                + "WHERE    m.id_rancho	=   r.id_rancho \n"
+                + "         AND      m.id_concepto	=   r.con_pesaje    \n"
+                + "         AND      ( m.id_rancho     =   d.id_rancho  \n"
+                + "         AND m.id_concepto   =   d.id_concepto   \n"
+                + "         AND m.id_movimiento =   d.id_movimiento     \n"
+                + "         AND d.id_animal     =   '"+ id_animal + "' \n"
+                + "         AND a.id_animal='"+ id_animal + "')");
 
         if (manejadorBD.getRowCount() > 0) {
 

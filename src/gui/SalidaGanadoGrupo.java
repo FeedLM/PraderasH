@@ -160,7 +160,6 @@ public class SalidaGanadoGrupo extends javax.swing.JInternalFrame {
         claseMovimientoSelector.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         jPanel4.add(claseMovimientoSelector, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 60, 200, 20));
 
-        tf_pesoActual.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tf_pesoActual.setText("0.0");
         tf_pesoActual.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         jPanel4.add(tf_pesoActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 240, 200, 20));
@@ -196,6 +195,12 @@ public class SalidaGanadoGrupo extends javax.swing.JInternalFrame {
         jPanel3.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 0, -1, -1));
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, -1, -1));
+
+        tf_Eid.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_EidActionPerformed(evt);
+            }
+        });
         jPanel1.add(tf_Eid, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -331,6 +336,10 @@ public class SalidaGanadoGrupo extends javax.swing.JInternalFrame {
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
 //        parent.setVisible(true);
     }//GEN-LAST:event_formWindowClosing
+
+    private void tf_EidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_EidActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tf_EidActionPerformed
 
     public void cargarDatosEid() {
 

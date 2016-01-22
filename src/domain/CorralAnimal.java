@@ -159,6 +159,30 @@ public class CorralAnimal {
 
         return array;
     }
+    
+    //cargar Animales por corral para la clase Traslado
+    public static ArrayList cargarAnimalesCorral(String corral,String idRancho) {
+
+        ArrayList array = new ArrayList();
+
+        //Cambio por arete_visual
+        manejadorBD.consulta(""
+                //+ "SELECT   corral_animal.id_animal "
+                + "SELECT   animal.arete_visual "
+                + "FROM     corral_animal, corral, animal "
+                + "WHERE    corral_animal.id_corral = corral.id_corral "
+                + "AND      corral_animal.id_animal = animal.id_animal "
+                + "AND      corral.nombre           = '" + corral + "' "
+                 + "AND      corral.id_rancho           = '" + idRancho + "' "
+                + "AND      animal.status           = 'A'");
+
+        for (int i = 0; i < manejadorBD.getRowCount(); i++) {
+
+            array.add(manejadorBD.getValueAt(i, 0).toString());
+        }
+
+        return array;
+    }
 
     public static Integer id_corralAnimal(Integer id_animal) {
 

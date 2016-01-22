@@ -69,6 +69,7 @@ public class Traslados extends javax.swing.JInternalFrame{
                 selectCorral();
             }
         });
+        System.out.println("ENTRANDO A TRASLADOS--------------");
 
         cargarCorralDestino();
         cargarCorralesList();
@@ -83,7 +84,7 @@ public class Traslados extends javax.swing.JInternalFrame{
         cellRenderer.setHorizontalAlignment(SwingConstants.CENTER);
 
         cellRenderer = (DefaultListCellRenderer) JL_CorralDestino.getCellRenderer();
-        cellRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+       cellRenderer.setHorizontalAlignment(SwingConstants.CENTER);
 
         cargarPuertos();
 
@@ -187,7 +188,7 @@ public class Traslados extends javax.swing.JInternalFrame{
 
         id_corral_origen = corralIdNombre(ls_corral);
 //      System.out.println("corral 1");
-        animales1 = cargarAnimalesCorral(ls_corral);
+        animales1 = cargarAnimalesCorral(ls_corral,rancho.id_rancho);
 //      System.out.println("corral 2");
         animales1.remove("");
         llenarCooral();
@@ -256,9 +257,7 @@ public class Traslados extends javax.swing.JInternalFrame{
         JL_CorralDestino = new javax.swing.JList();
         fondo1 = new abstractt.fondo();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Grupos");
-        
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -359,6 +358,12 @@ public class Traslados extends javax.swing.JInternalFrame{
             }
         });
         pn_destino.add(ranchoSelector1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 0, 200, 20));
+
+        corralSelector1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                corralSelector1ActionPerformed(evt);
+            }
+        });
         pn_destino.add(corralSelector1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 50, 200, 20));
 
         etiqueta3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -595,6 +600,10 @@ public class Traslados extends javax.swing.JInternalFrame{
         this.corralSelector1.cargarPorRancho(ranchoTraspaso);
 
     }//GEN-LAST:event_ranchoSelector1ActionPerformed
+
+    private void corralSelector1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_corralSelector1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_corralSelector1ActionPerformed
 
     private boolean cargandoCorralDestinos;
 
